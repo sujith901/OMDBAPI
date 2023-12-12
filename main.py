@@ -2,20 +2,21 @@ import json as j
 import requests as r
 from urllib.request import urlretrieve
 from PIL import Image
+import pprint
 
 
 def get_movie(movie_name):
-    movies_api = "http://www.omdbapi.com/?apikey="+"3bb87208"+"&t="+movie_name+"
+    movies_api = "http://www.omdbapi.com/?apikey="+"3bb87208"+"&t="+movie_name
     data = r.get(movies_api)
     info = j.loads(data.text)
-
+    pp = pprint.PrettyPrinter(indent=4)
+    pp.pprint(info)
     get_image(info['Poster'])
 
     bo_collection = str(info['BoxOffice'])
     bo_collection = bo_collection.strip('$')
     bo_collection = bo_collection.replace(',', '')
     bo_collection = int(bo_collection)
-    rate_conversion(bo_collection, movie_name)
 
 
 def get_image(Poster):
