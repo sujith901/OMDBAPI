@@ -2,11 +2,10 @@ import json as j
 import requests as r
 from urllib.request import urlretrieve
 from PIL import Image
-import api
 
 
 def get_movie(movie_name):
-    movies_api = "http://www.omdbapi.com/?apikey="+api.MOVIE_API+"="+movie
+    movies_api = "http://www.omdbapi.com/?apikey="+"3bb87208"+"&t="+movie_name+"
     data = r.get(movies_api)
     info = j.loads(data.text)
 
